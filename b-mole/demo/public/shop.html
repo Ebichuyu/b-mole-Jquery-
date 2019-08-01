@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/comm.css">
+    <link rel="stylesheet" href="../css/shop.css">
+    <title>Document</title>
+    <style>
+        .zt{
+            display: flex; 
+        }
+        /* 左边整体 */
+        #nr{
+            width: 65%;
+            margin-left: 5%; 
+            display: flex;
+            flex-wrap: wrap;  
+        }
+        /* 右边整体 */
+        #wz{
+            width: 30%;
+            margin-top: 3%;
+            padding-left: 5%;
+        }
+        /* 左边的每一个内容div */
+        .nr_xx{
+            width:33%;
+            /* float: left; */
+            padding-left: 5%;
+            margin-top:5%;
+            
+        }
+        /* 图片100% */
+        .nr_xx>img{width: 100%}
+        /* 里面的文字样式 */
+        .nr_xx>p{
+            color: #888888;
+            text-transform: uppercase;
+        }
+        
+        .nr_xx>h5>a:hover{color:#bad300; }
+
+        .nr_xx>h5>a{
+            color: #2e2e2e;
+            font-size: 23px;
+            line-height: 26px;
+            font-weight: 300;
+        }
+        /* --------------------------------------- */
+        /* 右边列表的样式 */
+        .jqwz,.flml,.bq{
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .flml,.bq{
+            margin-top: 7%;
+        }
+
+        #wz ul{
+            list-style: none;
+            padding: 0; 
+        }
+        #wz ul>li{
+            margin-top: 7%;
+        };
+
+
+        #wz ul>li>span{
+            color: #666666 !important;
+            font-size: 13px;
+        }
+        #wz ul>li>span:hover{
+            cursor: pointer;
+            color:#bad300;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页头 -->
+    <div id='header'></div>    
+    <!-- 固定页头 --> 
+    <div class='header1'>
+            <div class='header-input'>
+                <img src="../../img/78.png" alt="">
+                <input type="text" placeholder='Search'>
+                <img src="../../img/781.png" alt="" class='header-out'>
+            </div>    
+                <!-- 导航栏 -->
+            <div class="navbar"> 
+                <!-- logo图片 -->
+                <div class='header-logo'>
+                <!-- Logo -->
+                        <img src="../../img/NCCLOGO-01.png" alt="" >        
+                </div>       
+                <div class="nav">           
+                    <div>
+                        <ul class="nav-item">
+                            <li class="nav-link link-f">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/index.html">首页</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/about.html">关于我们</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/customer.html">客户案例</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/news.html">新闻动态</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/video.html">视频</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/product.html">产品中心</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/service.html">技术服务</a>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/shop.html">在线选购</a>
+                            </li>
+                            </li>
+                            <li class="nav-link ">
+                                <a href="http://127.0.0.1:5500/b-mole/demo/public/login.html">我的账户</a>
+                            </li>
+                            <li class="nav-link lav">
+                                <div>
+                                    <img src="../../img/zh-hans.png" alt=""> 
+                                    <a class=" " href="javascript:;">简体中文</a> 
+                                    <div class='between'>
+                                        <ul>
+                                            <li><a href="javascript:;"><img src="../../img/zh-hans.png" alt="">繁体中文</a></li>
+                                            <li><a href="javascript:;"><img src="../../img/en.png" alt="">English</a></li>
+                                        </ul>             
+                                    </div>   
+                                </div>       
+                            </li>
+                            <li class="nav-link .bet">
+                                <a href='javascript:;' class=" " >
+                                    <img src='../../img/zh-hans.png' alt=''>繁体中文
+                                </a>
+                            </li>
+                            <li  class="nav-link .bet" >
+                                <a href="javascript:;" class=' '>
+                                    <img src="../../img/en.png" alt="">English
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>        
+                <!-- 购物车图片 -->
+                <div class='shapp'>
+                    <a href="jacasceipt:;">
+                        <img src="../../img/77.png" alt="" >
+                    </a> 
+                    <div class=''>
+                        <a href="javascript:;">购物车</a>
+                    </div>            
+                </div>        
+                <div class='search'>
+                    <a href="javascript:;">
+                        <img src="../../img/771.png" alt="">
+                    </a> 
+                </div>        
+            </div>        
+    </div> 
+    
+    <!-- 主体 -->
+    <div class="zt">
+        <!-- 左30% -->
+        <div id="wz">
+        </div>
+
+        <!-- 左70% -->
+        <div id="nr">
+            <div class='nr_xx'>
+                <img src='../../img/shop/1.png'>
+                <h5><a href="javascript">1802桌面小型迷你空气净化器【网红爆款】抖音同款潮品除臭神器，桌面个人便携式空气净化器</a></h5>
+                <p><span>¥ 1,288.00</span></p>
+                <hr>
+            </div>
+            <div class='nr_xx'>
+                <img src='../../img/shop/1.png'>
+                <h5><a href="javascript">1802桌面小型迷你空气净化器【网红爆款】抖音同款潮品除臭神器，桌面个人便携式空气净化器</a></h5>
+                <p><span>¥ 1,288.00</span></p>
+                <hr>
+            </div>
+            <div class='nr_xx'>
+                <img src='../../img/shop/1.png'>
+                <h5><a href="javascript">1802桌面小型迷你空气净化器【网红爆款】抖音同款潮品除臭神器，桌面个人便携式空气净化器</a></h5>
+                <p><span>¥ 1,288.00</span></p>
+                <hr>
+            </div>
+            <div class='nr_xx'>
+                <img src='../../img/shop/1.png'>
+                <h5><a href="javascript">1802桌面小型迷你空气净化器【网红爆款】抖音同款潮品除臭神器，桌面个人便携式空气净化器</a></h5>
+                <p><span>¥ 1,288.00</span></p>
+                <hr>
+            </div>                        
+        </div>
+
+    </div>
+
+    <!-- 锚点 -->
+    <div class='top'><a href="#header"><img src="../../img/555.png" alt=""></a></div>
+    <!-- 页脚 -->
+    <div id='footer'></div>
+</body>
+<script>
+    $(function(){
+        // 页脚
+        $('#footer').load('./footer.html')
+        // 导航栏颜色
+        $('#header').load('./header.html',function(){
+            $('.nav-item .nav-link:nth-child(8)').addClass('link-f').siblings().removeClass('link-f')
+        })        
+    })    
+</script>
+</html>

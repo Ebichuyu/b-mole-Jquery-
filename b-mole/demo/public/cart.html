@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="../css/header.css"> 
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/comm.css">
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+    <!-- 页头 -->
+    <div id='header'></div>
+    <!-- 商品 -->
+    <div class='cart-product'>
+        <div>
+            <table class="product">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>产品</td>
+                    <td>价格</td>
+                    <td>数量</td>
+                    <td>合计</th>                
+                </tr>            
+            </table> 
+        </div>        
+        <div style='text-align:right'>
+           <p style='margin-right:20%;margin-top:3%;'>总计:<span class='cart-count'>666</span></p> 
+        </div>
+        <div class='count'>
+            <div>
+                <input type="text" placeholder='点击输入优惠劵代码'>
+                <input type="button" value='Apply Coupon'>
+            </div>
+            <div>
+                <input class='updateCart' type="button" value='Update Cart'>
+                <input type="button" value='去结算'>
+            </div>
+            
+        </div>                 
+            
+    </div>
+    <!-- 页脚 -->
+    <div id='footer'></div>
+</body>
+<script>    
+    $(function(){  
+    // 加载页头
+    $('#header').load('./header.html')
+    // 加载页脚
+    $('#footer').load('./footer.html')  
+    var a=window.sessionStorage.getItem('uid')    
+        $.ajax({
+            url:'http://127.0.0.1:3000/user/cart',
+            type:'get',
+            data:{uid:a},
+            dataType:'JSON',
+            success:function(res){
+                
+                if(res.result.length<2){
+                
+                } 
+                // console.log(res.result[0])
+                var $table=$('table.product')
+                var a=0 
+                // console.log(parseInt(res.result[0].cartNumber),typeof res.result[0].cartPrice.slice(1))
+                for( var i=0;i<res.result.length;i++){                                 
+                    a+=parseInt(res.result[i].cartPrice.slice(1)) * parseInt(res.result[i].cartNumber)
+                    $table.append($(`
+                    <tr class='pro-cart' data_id=${res.result[i].cid}>
+                        <td class='dete' data_id=${res.result[i].cid}><img src=${res.result[i].cartDImg} alt=""></td>
+                        <td><img src=${res.result[i].cartPImg} alt=""></td>
+                        <td><p>${res.result[i].cartTitle}</p></td>
+                        <td><p class='price'>${res.result[i].cartPrice}</p></td>
+                        <td><p>数量<input min='1' class='number' type="number" value=${res.result[i].cartNumber}></p></td>
+                        <td><p class='counts'>${'￥'+parseInt(res.result[i].cartPrice.slice(1))*parseInt(res.result[i].cartNumber)+'.00'}</p></td>
+                    </tr>
+                    `))
+                } 
+                var a=document.getElementsByClassName('counts')
+                    var counts=0
+                    for(var i=0;i<a.length;i++){                        
+                        counts+=parseInt(a[i].innerHTML.slice(1,-3))
+                    }
+                    console.log(counts)
+                    $('.cart-count').html('￥ '+counts)
+                // 总数
+                // $('.cart-count').html('￥ '+a)
+                // 删除事件  
+                $('.dete').click(function(){
+                    var cid=$(this).attr('data_id')
+                    // $(this).parents()[0].className
+                    console.log($(this).parents()[0].className+=' display-none' )
+                    $.ajax({
+                        url:'http://127.0.0.1:3000/user/cartdelete',
+                        Type:'get',
+                        data:{cid:cid},
+                        dataType:'JSON',
+                        success:function(res){
+                            if(res>0){                                  $('body').append($(`<div class="alert">删除成功</div>`))
+                            setTimeout(function(){
+                                $('div.alert').remove()
+                            },1500)
+                            }else{
+                                $('body').append($(`<div class="alert">删除失败</div>`))
+                            setTimeout(function(){
+                                $('div.alert').remove()
+                            },1500)
+                            }
+                        },
+                        fail:function(err){
+                            console.log(err)
+                        }
+                    })
+                }) 
+                //修改数量
+                $(".number").bind("input propertychange", function() {                     
+                    $(this).parents()[1].nextElementSibling.children[0].innerHTML='￥ '+$(this).parents()[1].previousElementSibling.children[0].innerHTML.slice(1)*$(this).val()+'.00'
+                    var a=document.getElementsByClassName('counts')
+                    var counts=0
+                    for(var i=0;i<a.length;i++){                        
+                        counts+=parseInt(a[i].innerHTML.slice(1,-3))
+                    }
+                    console.log(counts)
+                    $('.cart-count').html('￥ '+counts)
+                });
+                    
+                $('.number').blur(function(){
+                    // console.log(typeof(parseInt($(this).val())))                    
+                    if($(this).val()<0){                        
+                        $(this).val('1');
+                    $(this).parents()[1].nextElementSibling.children[0].innerHTML='￥ '+$(this).parents()[1].previousElementSibling.children[0].innerHTML.slice(1)*$(this).val()+'.00'                        
+                    }
+                })     
+            },
+            fail:err=>{console.log(err)}
+            
+        });
+        // 更新数据库        
+        $('.updateCart').click(function(){                               
+            var number=$('.number');
+            var obj=[];
+                for(var i=0;i<number.length;i++){
+                    var num=number[i].value
+                    var cid=number.parent().parent().parent()[i].getAttribute("data_id")
+                    obj[i]={num,cid}                                                      
+                }      
+                console.log(obj)  
+            $.ajax({
+                url:'http://127.0.0.1:3000/user/cartupdate',
+                Type:'get',
+                data:{obj:obj},
+                dataType:'JSON',
+                success:res=>{
+                    if(res.code==200){
+                        $('body').append($(`<div class="alert">更新成功</div>`))
+                            setTimeout(function(){
+                                $('div.alert').remove()
+                                // window.location.href='http://127.0.0.1:5500/b-mole/demo/public/cart.html'
+                            },1500)
+                    }
+                },
+                fail:err=>{
+                    console.log(err)
+                }
+            })    
+        })          
+    })   
+</script>
+</html>

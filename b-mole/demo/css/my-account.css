@@ -1,0 +1,98 @@
+.myAccount{   
+    padding:5% 8% 8% 18%;
+    display:flex;
+    overflow: hidden;
+    height:750px;
+    /* justify-content: center; */
+}
+.myAccount ul{
+    min-width:56px;
+}
+.myAccount ul li{
+    min-width:64px;
+    margin-top:40px;
+}
+.myAccount ul li a{
+    font-size:16px;
+    color:rgba(17,17,17,.5)
+}
+.active a{
+    color:rgb(0, 10, 0) !important;
+    font-weight:bold;
+}
+.myAcc{    
+    margin-left:200px;
+    height:500%;
+    margin-top:40px;
+    transition:.5s;
+    transform: translateY(0)
+}
+.myAcc div{    
+    height:100%;    
+}
+.myAcc div:first-child{     
+    min-width:666px;
+}
+.but{
+    float:right; 
+    margin-right:1%;  
+    width:120px;
+    height:40px;
+    background:rgba(14, 13, 13,.9);
+    color:#fff;
+    border:none;
+    font-size:14px;
+}
+.but1{
+    width:60px;height:30px;
+    font-size:12px;
+    background:#000;
+    color:#fff;
+    border:1px solid red;
+    margin-bottom:15px;
+}
+.but2{
+    width:100px;height:40px;
+    font-size:12px;
+    background:#000;
+    color:#fff;
+    border:1px solid red;
+    margin-bottom:15px;
+}
+.myAcc-ul li:first-child{
+    display:flex;
+    justify-content:space-around;    
+    margin-top:0;
+}
+.myAcc-ul p{
+    margin:0;
+    font-size:14px;
+}
+.myAcc input.acc{
+    height:50px; 
+    width:100%;
+    outline:none;
+    padding:10px;
+    font-size:12px;
+    background:#f6f6f6;
+    border:1px solid #999;    
+}
+.myAcc input.abb{
+    height:50px; 
+    width:40%;
+    outline:none;
+    padding:10px;
+    font-size:12px;
+    background:#f6f6f6;
+    border:1px solid #999;    
+}
+.myAcc div{
+    padding-right:20px;
+}
+.myAcc-ul li:first-child div{
+        width:50%;
+}
+.myAcc-ul li:first-child input{  
+    font-size:12px;
+    background:#f6f6f6;    
+}
